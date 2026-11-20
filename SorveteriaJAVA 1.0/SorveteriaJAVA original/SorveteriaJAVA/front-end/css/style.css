@@ -1,0 +1,283 @@
+/* ==========================================================
+   PALETA DE CORES
+   Todas as cores ficam aqui; para mudar o visual, altere só estas variáveis
+   ========================================================== */
+:root {
+    --rosa: #ff5fa2;          /* rosa principal (destaques e botão de finalizar) */
+    --rosa-claro: #ffe3ef;    /* rosa suave para fundos */
+    --azul: #4cb8ff;          /* azul principal (títulos e detalhes) */
+    --azul-claro: #e1f4ff;    /* azul suave para fundos */
+    --azul-escuro: #1f6fb2;   /* azul para textos com bom contraste */
+    --texto: #3d3d5c;         /* cor do texto comum */
+    --branco: #ffffff;
+}
+
+/* ==========================================================
+   RESET E BASE
+   ========================================================== */
+* {
+    box-sizing: border-box;   /* padding e borda entram no cálculo da largura */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--branco);
+    /* Fonte arredondada e divertida; se não carregar, usa as alternativas */
+    font-family: "Comic Sans MS", "Chalkboard SE", "Trebuchet MS", sans-serif;
+    color: var(--texto);
+    display: flex;
+    justify-content: center;  /* centraliza o container na horizontal */
+    padding: 32px 16px;
+}
+
+/* ==========================================================
+   CONTAINER PRINCIPAL
+   Cartão central com borda rosa e sombra azul
+   ========================================================== */
+.container {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    padding: 28px 24px 32px;
+    border: 4px solid var(--rosa);
+    border-radius: 28px;
+    box-shadow: 8px 8px 0 var(--azul);   /* sombra "sólida" estilo desenho */
+}
+
+/* ==========================================================
+   TÍTULOS E TEXTOS
+   ========================================================== */
+h1 {
+    font-size: 32px;
+    color: var(--rosa);
+    margin-bottom: 6px;
+}
+
+h2 {
+    font-size: 20px;
+    color: var(--azul-escuro);
+    margin: 28px 0 14px;
+}
+
+.subtitulo {
+    display: inline-block;               /* o fundo envolve só o texto */
+    background: var(--azul-claro);
+    color: var(--azul-escuro);
+    padding: 6px 16px;
+    border-radius: 999px;                /* formato de pílula */
+    font-weight: bold;
+}
+
+/* ==========================================================
+   BOTÕES DE SABOR
+   ========================================================== */
+.sabores {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;                     /* quebra linha em telas pequenas */
+    gap: 14px;
+}
+
+button {
+    font-family: inherit;                /* usa a mesma fonte do resto da página */
+    font-size: 17px;
+    font-weight: bold;
+    padding: 14px 22px;
+    border-radius: 18px;
+    border: 3px solid var(--azul);
+    background: var(--azul-claro);
+    color: var(--azul-escuro);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+button:hover {
+    transform: translateY(-4px) rotate(-2deg);   /* "pula" e inclina ao passar o mouse */
+    box-shadow: 0 6px 0 var(--azul);
+}
+
+button:active {
+    transform: translateY(0);                    /* efeito de apertar */
+    box-shadow: none;
+}
+
+/* Sabor escolhido (classe "ativo" adicionada pelo JavaScript) */
+.sabor.ativo {
+    background: var(--rosa);
+    border-color: var(--rosa);
+    color: var(--branco);
+    box-shadow: 0 6px 0 #d63d84;                 /* rosa mais escuro */
+}
+
+/* ==========================================================
+   RESUMO DO PEDIDO
+   ========================================================== */
+.resumo {
+    text-align: left;
+    background: var(--rosa-claro);
+    border: 3px dashed var(--rosa);              /* borda tracejada, estilo "etiqueta" */
+    border-radius: 20px;
+    padding: 8px 22px 18px;
+    margin-top: 8px;
+}
+
+.resumo h2 {
+    margin-top: 14px;
+    color: var(--rosa);
+}
+
+.resumo ul {
+    margin: 8px 0 14px 22px;
+    line-height: 1.8;
+}
+
+.total {
+    font-size: 20px;
+    color: var(--azul-escuro);
+}
+
+.total strong {
+    color: var(--rosa);
+    font-size: 24px;
+}
+
+/* ==========================================================
+   BOTÕES DE AÇÃO (Limpar e Finalizar)
+   ========================================================== */
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 26px;
+    flex-wrap: wrap;
+}
+
+.primario {
+    background: var(--rosa);
+    border-color: var(--rosa);
+    color: var(--branco);
+}
+
+.primario:hover {
+    box-shadow: 0 6px 0 #d63d84;
+}
+
+.secundario {
+    background: var(--branco);
+    border-color: var(--azul);
+    color: var(--azul-escuro);
+}
+
+/* ==========================================================
+   TELAS PEQUENAS (celular)
+   ========================================================== */
+@media (max-width: 480px) {
+    h1 { font-size: 26px; }
+    button { width: 100%; }              /* botões ocupam a largura toda no celular */
+}
+
+
+/* Preço dentro do botão de sabor (linha menor abaixo do nome) */
+.preco-sabor {
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 4px;
+}
+
+/* Textos de carregamento */
+.carregando {
+    color: var(--azul-escuro);
+}
+
+/* Mensagem de erro da API */
+.mensagem-erro {
+    background: var(--rosa-claro);
+    color: #b3205f;
+    border: 2px solid var(--rosa);
+    border-radius: 14px;
+    padding: 10px 14px;
+    margin-top: 16px;
+}
+
+/* Botões desabilitados (antes dos dados carregarem ou durante o envio) */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+/*
+   NOTIFICAÇÃO DO PEDIDO (TOAST)
+ */
+#toasts {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    left: 16px;                          /* no celular ocupa a largura toda */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    z-index: 1000;
+    pointer-events: none;                /* o contêiner não bloqueia cliques na página */
+}
+
+.toast {
+    pointer-events: auto;
+    width: 100%;
+    max-width: 340px;
+    background: var(--branco);
+    color: var(--texto);
+    border: 4px solid var(--rosa);
+    border-radius: 22px;
+    box-shadow: 6px 6px 0 var(--azul);
+    padding: 14px 18px;
+    cursor: pointer;
+    animation: toast-entrar 0.3s ease-out;
+}
+
+.toast-titulo {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--rosa);
+    margin-bottom: 6px;
+}
+
+.toast-linha {
+    font-size: 15px;
+    color: var(--azul-escuro);
+}
+
+.toast-total {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 2px dashed var(--rosa);
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--azul-escuro);
+}
+
+/* Versão de erro */
+.toast.erro {
+    background: var(--rosa-claro);
+    border-color: #b3205f;
+}
+
+.toast.erro .toast-titulo {
+    color: #b3205f;
+}
+
+.toast.saindo {
+    animation: toast-sair 0.25s ease-in forwards;
+}
+
+@keyframes toast-entrar {
+    from { transform: translateX(120%) rotate(4deg); opacity: 0; }
+    to   { transform: none; opacity: 1; }
+}
+
+@keyframes toast-sair {
+    to { transform: translateX(120%); opacity: 0; }
+}

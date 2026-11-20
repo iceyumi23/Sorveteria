@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorveteria</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Conteúdo principal da página; a classe "container" centraliza e limita a largura (definido no CSS) -->
+<main class="container">
+    <h1>🍦 Monte seu Sundae</h1>
+
+    <p class="subtitulo" id="subtitulo">Carregando...</p>
+    <!-- Preenchido pelo JS com o nome e o preço base vindos da API (ex.: "Casquinha base: R$ 5,00") -->
+
+    <!-- Mensagem de erro: fica oculta e só aparece se a API falhar -->
+    <p class="mensagem-erro" id="mensagem-erro" role="alert" hidden></p>
+
+    <!-- ===== SELEÇÃO DE SABORES ===== -->
+    <h2>Escolha os sabores</h2>
+
+    <div class="sabores" id="sabores">
+        <!-- Os botões de sabor são criados pelo JS a partir da lista que vem da API.
+             Cada botão recebe o nome, o emoji e o preço cadastrados no banco -->
+        <p class="carregando">Carregando sabores...</p>
+    </div>
+
+    <section class="resumo">
+        <h2>Seu pedido</h2>
+
+        <ul id="lista-pedido">
+            <!-- Lista de itens do pedido. Começa vazia e é montada pelo JS (casquinha + sabores escolhidos) -->
+        </ul>
+        <p class="total">Total: <strong id="total">--</strong></p>
+        <!-- O total é calculado pelo back-end e exibido aqui pelo JS -->
+    </section>
+
+    <div class="acoes">
+        <button id="btn-limpar" class="secundario" disabled>Limpar</button>
+        <!-- Remove todos os sabores selecionados e volta o total para o preço base -->
+        <button id="btn-finalizar" class="primario" disabled>Finalizar pedido</button>
+        <!-- Envia o pedido ao back-end. Fica desabilitado até os dados da API carregarem -->
+    </div>
+</main>
+
+<!-- Tags indicando os caminhos do javascript -->
+<script src="javascript/api.js"></script>
+<!-- Comunicação com o back-end. Deve ser carregado ANTES do app.js, pois o app.js usa suas funções -->
+<script src="javascript/app.js"></script>
+<!-- Controla a interface: monta os sabores, trata os cliques e atualiza a lista e o total -->
+</body>
+</html>
